@@ -13,8 +13,27 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>grocery bud project</h1>
+    <div class="service-alert"></div>
+    <section class="section-center">
+      <!-- form -->
+      <form class="grocery-form">
+        <p class="alert"></p>
+        <h3>Grocery</h3>
+        <div class="form-control">
+          <input type="text" id="grocery" placeholder="Add some grocery">
+          <button type="submit" class="submit-btn">Add</button>
+        </div>
+      </form>
+      <!-- list -->
+      <div class="grocery-container">
+        <div class="grocery-list">
+
+        </div>
+        <button class="clear-btn">Clear all</button>
+      </div>
+    </section>
     <!-- javascript -->
+    <script src="/services.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
