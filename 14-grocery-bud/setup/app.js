@@ -21,9 +21,7 @@ function addItem(e) {
     const newItem = {value, id}
     
     if(value !== "") {
-        const items = groceryStore.get()
-        items.push(newItem)
-        groceryStore.set(items)
+        groceryStore.add(newItem)
         displayAlert("Add item successful", "success")
         render()
     } else {
@@ -32,12 +30,24 @@ function addItem(e) {
     setBackToDefault()
 }
 
+function deleteItem(e) {
+    e.preventDefault()
+    const element = e.currentTarget.parentElement.parentElement;
+    const id = element.dataset.id;
+    console.log(id)
+    groceryStore.remove(id)
+    render()
+    displayAlert("Delete successful", "danger")
+}
+
 function setBackToDefault() {
     grocery.value = ""
+    grocery.focus()
 }
 
 function render() {
-    const items = groceryStore.get()
+    let items = groceryStore.get()
+    items = shuffleArray(items)
     list.innerHTML = ""
     items.forEach(item => {
         createListItem(item.value, item.id)
@@ -59,6 +69,9 @@ function createListItem(value, id) {
             <button class="delete-btn">Delete</button>
         </div>
     `
+    // ========= Add event =============
+    const deleteBtn = element.querySelector(".delete-btn");
+    deleteBtn.addEventListener('click', deleteItem)
     list.appendChild(element)
 }
 // ****** LOCAL STORAGE **********
